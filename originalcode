@@ -578,6 +578,23 @@ M.launch=function()
 					if (age>=this.mature) M.dropUpgrade('Ichor syrup',0.005);
 				},
 			},
+			'kingcrumb':{
+				name:'King\'s Crumb',
+				fungus:true,
+				icon:33,
+				cost:120,
+				costM:987654321,
+				ageTick:1,
+				ageTickR:1.5,
+				mature:35,
+				children:[],
+				effsStr:'<div class="green">&bull; '+loc("surrounding plants (%1x%1) age %2% slower",[3,50])+'</div><div class="red">&bull; '+loc("surrounding plants (%1x%1) are %2% less efficient",[3,50])+'</div>',
+				q:'This puffball mushroom contains sugary spores, but it never seems to mature to bursting on its own. Surrounding plants under its influence have a very slow metabolism, reducing their effects but lengthening their lifespan.',
+				onHarvest:function(x,y,age)
+				{
+					if (age>=this.mature) M.dropUpgrade('Ichor syrup',0.01);
+				},
+			},
 		};
 		M.plantsById=[];var n=0;
 		for (var i in M.plants)
@@ -1695,6 +1712,7 @@ M.launch=function()
 					if (locked>0){for (var i in M.plants){M.unlockSeed(M.plants[i]);}}
 					else{for (var i in M.plants){M.lockSeed(M.plants[i]);}}
 					M.unlockSeed(M.plants['bakerWheat']);
+					M.unlockSeed(M.plants['kingcrumb']);
 				}
 			}
 		});
